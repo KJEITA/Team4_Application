@@ -1,4 +1,6 @@
-package bonch.dev.team4_application.ui.ui.login
+package bonch.dev.team4_application.ui.login
+
+import bonch.dev.team4_application.ui.login.LoggedInUserView
 
 /**
  * Authentication result : success (user details) or error message.

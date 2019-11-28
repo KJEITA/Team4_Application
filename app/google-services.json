@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "924702489837",
+    "firebase_url": "https://team4application.firebaseio.com",
+    "project_id": "team4application",
+    "storage_bucket": "team4application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924702489837:android:6298f21f7fe7ae704460e4",
+        "android_client_info": {
+          "package_name": "bonch.dev.team4_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924702489837-3ojvqv99b8scfbig51ch8tkqc9b7c740.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bonch.dev.team4_application",
+            "certificate_hash": "016af832f96b824ecec8668972caa0397a5123f4"
+          }
+        },
+        {
+          "client_id": "924702489837-snulakvmqucfiqkeqeg9dp03709iiij0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZSt6Hh5aofdfy71BVfTVxOqCSUnr_vio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924702489837-snulakvmqucfiqkeqeg9dp03709iiij0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

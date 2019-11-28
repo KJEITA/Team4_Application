@@ -1,9 +1,10 @@
-package bonch.dev.team4_application.ui.ui.login
+package bonch.dev.team4_application.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import bonch.dev.team4_application.ui.data.LoginDataSource
 import bonch.dev.team4_application.ui.data.LoginRepository
+import bonch.dev.team4_application.ui.login.LoginViewModel
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

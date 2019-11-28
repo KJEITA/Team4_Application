@@ -1,4 +1,4 @@
-package bonch.dev.team4_application.ui.ui.login
+package bonch.dev.team4_application.ui.login
 
 import android.app.Activity
 import androidx.lifecycle.Observer
@@ -14,8 +14,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import bonch.dev.team4_application.R
+import bonch.dev.team4_application.ui.login.LoggedInUserView
+import bonch.dev.team4_application.ui.login.LoginViewModel
+import bonch.dev.team4_application.ui.login.LoginViewModelFactory
 
-import bonch.dev.team4_application.ui.R
+//import bonch.dev.team4_application.ui.R
 
 class LoginActivity : AppCompatActivity() {
 

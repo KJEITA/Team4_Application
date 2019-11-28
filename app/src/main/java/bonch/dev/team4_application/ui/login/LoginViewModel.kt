@@ -1,13 +1,17 @@
-package bonch.dev.team4_application.ui.ui.login
+package bonch.dev.team4_application.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import bonch.dev.team4_application.R
 import bonch.dev.team4_application.ui.data.LoginRepository
 import bonch.dev.team4_application.ui.data.Result
+import bonch.dev.team4_application.ui.login.LoggedInUserView
+import bonch.dev.team4_application.ui.login.LoginFormState
+import bonch.dev.team4_application.ui.login.LoginResult
 
-import bonch.dev.team4_application.ui.R
+//import bonch.dev.team4_application.ui.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

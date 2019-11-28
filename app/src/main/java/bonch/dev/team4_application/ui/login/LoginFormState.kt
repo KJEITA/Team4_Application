@@ -1,4 +1,4 @@
-package bonch.dev.team4_application.ui.ui.login
+package bonch.dev.team4_application.ui.login
 
 /**
  * Data validation state of the login form.
