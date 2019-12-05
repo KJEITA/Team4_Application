@@ -1,5 +1,6 @@
 package bonch.dev.team4_application.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,78 +53,101 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
         fun bind(position: Int, viewType: Int, view: View) {
 
             val paidSubjTableLayout = itemView.findViewById<TableLayout>(R.id.subjTableLayout)
-            for (i: Int in 1..subjSectList.get(position).subjList.size) {
+            val listRow: MutableList<TableRow> = mutableListOf()
+
+            val titleSubjSect: TextView =
+                view.findViewById(R.id.subjSectTitleTextView)
+            titleSubjSect.setText(subjSectList.get(position).subjSectTitle)
+
+            for (j in 0..(Math.ceil((subjSectList.get(position).subjList.size / 2).toDouble()).toInt())) {
+                listRow.add(j, TableRow(view.context))
+                listRow[j].layoutParams = TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT
+                )
+                paidSubjTableLayout.addView(listRow.get(j))
+
 
                 if (viewType == Constants.PAID_SUBJ) {
+                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
-                    if (i%2==0) {
-                        val tableRow = TableRow(view.context)
-                        val inflater = LayoutInflater.from(view.context)
-
-                        val firstSubjItemLayout: View =
-                            inflater.inflate(R.layout.subject_item, view as ViewGroup, false)
-                        val secondSubjItemLayout: View =
-                            inflater.inflate(R.layout.subject_item, view as ViewGroup, false)
-
-                        val titleSubjSect : TextView = view.findViewById(R.id.subjSectTitleTextView)
-                        val firstTextView : TextView =firstSubjItemLayout.findViewById(R.id.subjTitleTextView)
-                        val secondTextView : TextView =secondSubjItemLayout.findViewById(R.id.subjTitleTextView)
-                        val firstImageView : ImageView = firstSubjItemLayout.findViewById(R.id.subjImageView)
-                        val secondImageView : ImageView = secondSubjItemLayout.findViewById(R.id.subjImageView)
-
-                        titleSubjSect.setText(subjSectList.get(position).subjSectTitle)
-
-                        firstSubjItemLayout.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                            TableRow.LayoutParams.WRAP_CONTENT,1f)
-
-                        secondSubjItemLayout.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                            TableRow.LayoutParams.WRAP_CONTENT,1f)
-
-
-                        Glide.with(view.context)
-                            .load(subjSectList[position].subjList[i-1].imageURL)
-                            .into(firstImageView)
-
-                        Glide.with(view.context)
-                            .load(subjSectList[position].subjList[i].imageURL)
-                            .into(secondImageView)
-
-                        firstTextView.setText(subjSectList.get(position).subjList.get(i-1).nameTitle)
-                        secondTextView.setText(subjSectList.get(position).subjList.get(i).nameTitle)
-
-                        tableRow.layoutParams= TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT)
-                        tableRow.addView(firstSubjItemLayout)
-                        tableRow.addView(secondSubjItemLayout)
-                        paidSubjTableLayout.addView(tableRow)
-
-
+                        addSubjItem(i, j, position, view, listRow,"#D81B60")
                     }
-
-
                 }
+
+
 
                 if (viewType == Constants.EXACT_SUBJ) {
 
+                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
+
+                        addSubjItem(i, j, position, view, listRow,"#008577")
+                    }
                 }
 
                 if (viewType == Constants.TECH_SUBJ) {
+                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
+                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                    }
                 }
 
                 if (viewType == Constants.NATURAL_SUBJ) {
+                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
+                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                    }
                 }
 
                 if (viewType == Constants.HUMAN_SUBJ) {
+                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
+                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                    }
                 }
 
                 if (viewType == Constants.NOT_FOUND_SUBJ) {
+                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
+                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                    }
                 }
+
 
             }
 
+        }
+
+    }
+
+    private fun addSubjItem(i: Int, j: Int, position: Int, view: View,
+                            listRow: MutableList<TableRow>,
+                            color:String) {
+
+        if ((i == j * 2) || (i == j * 2 + 1)) {
+
+            val inflater = LayoutInflater.from(view.context)
+
+            val subjItemLayout: View =
+                inflater.inflate(R.layout.subject_item, view as ViewGroup, false)
+
+            val subjTitleTextView: TextView =
+                subjItemLayout.findViewById(R.id.subjTitleTextView)
+            val subjImageView: ImageView =
+                subjItemLayout.findViewById(R.id.subjImageView)
+
+            subjItemLayout.layoutParams = TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT, 1f
+            )
+            subjItemLayout.setBackgroundColor(Color.parseColor(color))
+
+            Glide.with(view.context)
+                .load(subjSectList.get(position).subjList[i].imageURL)
+                .into(subjImageView)
+            subjTitleTextView.setText(subjSectList.get(position).subjList.get(i).nameTitle)
+
+            listRow[j].addView(subjItemLayout)
         }
 
     }
