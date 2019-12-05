@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Team4_Application</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_education">Education</string>
+    <string name="title_personal_area">Personal Area</string>
+    <string name="title_awards">Awards</string>
+    <string name="title_activity_subj">SubjActivity</string>
 </resources>
