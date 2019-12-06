@@ -1,5 +1,6 @@
 package bonch.dev.team4_application.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,11 +13,10 @@ import bonch.dev.team4_application.MainActivity
 import bonch.dev.team4_application.R
 import bonch.dev.team4_application.ui.signUp.SignUp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 import java.net.HttpRetryException
 import android.graphics.Paint
+import android.net.ConnectivityManager
 import android.widget.Button
 
 
@@ -24,12 +24,10 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var emailText: EditText
     private lateinit var passwordText: EditText
-    private lateinit var loading:ProgressBar
+    private lateinit var loading: ProgressBar
 
     private lateinit var underText: Button
 
-    private lateinit var mDataBase: FirebaseDatabase
-    private lateinit var mReference: DatabaseReference
     private lateinit var mAuth: FirebaseAuth
 
     private var bEmail = false;
@@ -43,9 +41,6 @@ class LoginActivity : AppCompatActivity() {
         passwordText = findViewById(bonch.dev.team4_application.R.id.password)
         loading = findViewById(bonch.dev.team4_application.R.id.loading)
 
-
-        mDataBase = FirebaseDatabase.getInstance()
-        mReference = mDataBase.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
 
         checkFields()
@@ -54,33 +49,46 @@ class LoginActivity : AppCompatActivity() {
 
         underText.setPaintFlags(underText.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
 
+        if (!isOnline(applicationContext))
+            Toast.makeText(
+                applicationContext,
+                "Отсутсвует подключение к интернету",
+                Toast.LENGTH_SHORT
+            ).show()
     }
 
     fun signIn(view: View) {
-        val email = emailText.text.toString()
-        val password = passwordText.text.toString()
-        if (bEmail && bPassword) {
-            loading.visibility = ProgressBar.VISIBLE
-            try {
+        if (isOnline(applicationContext)) {
+            val email = emailText.text.toString()
+            val password = passwordText.text.toString()
+            if (bEmail && bPassword) {
+                loading.visibility = ProgressBar.VISIBLE
+                try {
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            val intent = Intent(SignInActivity@ this, MainActivity::class.java)
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "Неверный логин или пароль",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val intent = Intent(SignInActivity@ this, MainActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Неверный логин или пароль",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            loading.visibility = ProgressBar.INVISIBLE
                         }
-                        loading.visibility = ProgressBar.INVISIBLE
-                    }
-            } catch (err: HttpRetryException) {
+                } catch (err: HttpRetryException) {
 
+                }
             }
-        }
+        }else
+            Toast.makeText(
+                applicationContext,
+                "Отсутсвует подключение к интернету",
+                Toast.LENGTH_SHORT
+            ).show()
     }
 
     fun signUp(view: View) {
@@ -111,5 +119,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 }

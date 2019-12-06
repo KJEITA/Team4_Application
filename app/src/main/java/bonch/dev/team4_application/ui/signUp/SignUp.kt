@@ -1,10 +1,11 @@
 package bonch.dev.team4_application.ui.signUp
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import bonch.dev.team4_application.MainActivity
@@ -12,8 +13,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.net.HttpRetryException
-import android.widget.Spinner
-import android.widget.ArrayAdapter
 
 
 class SignUp : AppCompatActivity() {
@@ -61,19 +60,20 @@ class SignUp : AppCompatActivity() {
     }
 
     fun signUp(view: View) {
-        if (bEmail && bName && bPassword && bPasswordConfirm && bPhone && bSecondName)
-            try {
-                mAuth.createUserWithEmailAndPassword(
-                    email.text.toString(),
-                    password.text.toString()
-                )
-                    .addOnCompleteListener { task ->
+        if (isOnline(applicationContext)) {
+            if (bEmail && bName && bPassword && bPasswordConfirm && bPhone && bSecondName)
+                try {
+                    mAuth.createUserWithEmailAndPassword(
+                        email.text.toString(),
+                        password.text.toString()
+                    ).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val user = mAuth.currentUser!!.uid
                             val currentUserDb = mReference.child(user)
                             currentUserDb.child("email").setValue(email.text.toString())
                             currentUserDb.child("name").setValue(name.text.toString())
-                            currentUserDb.child("secondName").setValue(secondName.text.toString())
+                            currentUserDb.child("secondName")
+                                .setValue(secondName.text.toString())
                             currentUserDb.child("password").setValue(password.text.toString())
                             currentUserDb.child("phone").setValue(phoneNumber.text.toString())
 
@@ -84,9 +84,20 @@ class SignUp : AppCompatActivity() {
 
                         }
                     }
-            } catch (err: HttpRetryException) {
+                } catch (err: HttpRetryException) {
 
-            }
+                }else
+                Toast.makeText(
+                    applicationContext,
+                    "Не верно заполненны поля",
+                    Toast.LENGTH_SHORT
+                ).show()
+        } else
+            Toast.makeText(
+                applicationContext,
+                "Отсутсвует подключение к интернету",
+                Toast.LENGTH_SHORT
+            ).show()
     }
 
     private fun checkFields() {
@@ -180,5 +191,12 @@ class SignUp : AppCompatActivity() {
         )
         spinnerArrayAdapter.setDropDownViewResource(bonch.dev.team4_application.R.layout.spiner_item)
         spinner.adapter = spinnerArrayAdapter
+    }
+
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 }
