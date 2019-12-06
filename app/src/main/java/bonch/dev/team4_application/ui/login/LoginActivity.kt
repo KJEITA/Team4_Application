@@ -16,12 +16,17 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 import java.net.HttpRetryException
+import android.graphics.Paint
+import android.widget.Button
+
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var emailText: EditText
     private lateinit var passwordText: EditText
     private lateinit var loading:ProgressBar
+
+    private lateinit var underText: Button
 
     private lateinit var mDataBase: FirebaseDatabase
     private lateinit var mReference: DatabaseReference
@@ -32,11 +37,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(bonch.dev.team4_application.R.layout.activity_login)
 
-        emailText = findViewById(R.id.username)
-        passwordText = findViewById(R.id.password)
-        loading = findViewById(R.id.loading)
+        emailText = findViewById(bonch.dev.team4_application.R.id.username)
+        passwordText = findViewById(bonch.dev.team4_application.R.id.password)
+        loading = findViewById(bonch.dev.team4_application.R.id.loading)
 
 
         mDataBase = FirebaseDatabase.getInstance()
@@ -44,6 +49,11 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         checkFields()
+
+        underText = findViewById(R.id.signUp)
+
+        underText.setPaintFlags(underText.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+
     }
 
     fun signIn(view: View) {

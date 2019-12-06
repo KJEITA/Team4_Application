@@ -1,60 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_1"
+    android:orientation="vertical"
+    android:gravity="center_horizontal|bottom">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="top"
+        android:fontFamily="Open Sans"
+        android:gravity="center"
+        android:text="Регистрация"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/et_Email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/field_style"
+        android:elevation="3dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:hint = "Email"/>
+        android:paddingStart="13dp"
+        android:textColor="#15675D"
+        android:textColorHint="#15675D" />
 
     <EditText
         android:id="@+id/et_Name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/field_style"
+        android:elevation="3dp"
         android:ems="10"
+        android:hint="Имя"
         android:inputType="textPersonName"
-        android:hint = "Имя" />
+        android:paddingStart="13dp"
+        android:textColor="#15675D"
+        android:textColorHint="#15675D" />
 
     <EditText
         android:id="@+id/et_SecondName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/field_style"
+        android:elevation="3dp"
         android:ems="10"
+        android:hint="Фамилия"
         android:inputType="textPersonName"
-        android:hint = "Фамилия" />
+        android:paddingStart="13dp"
+        android:textColor="#15675D"
+        android:textColorHint="#15675D" />
 
     <EditText
         android:id="@+id/et_PhoneNumber"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/field_style"
+        android:elevation="3dp"
         android:ems="10"
+        android:hint="Телефон"
         android:inputType="phone"
-        android:hint = "Телефон" />
+        android:paddingStart="13dp"
+        android:textColor="#15675D"
+        android:textColorHint="#15675D" />
 
     <EditText
         android:id="@+id/et_Password_signUp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/field_style"
+        android:elevation="3dp"
         android:ems="10"
+        android:hint="Пароль"
         android:inputType="textPassword"
-        android:hint = "Пароль" />
+        android:paddingStart="13dp"
+        android:textColor="#15675D"
+        android:textColorHint="#15675D" />
 
     <EditText
         android:id="@+id/et_Password2_signUp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/field_style"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="Повторите пароль"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingStart="13dp"
+        android:textColor="#15675D"
+        android:textColorHint="#15675D" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="21dp"
+        android:paddingStart="13dp"
+        android:entries="@array/catlist"
+        android:textColor = "#15675D"
+        android:singleLine="true"
+        />
 
     <Button
         android:id="@+id/btn_SignUp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:background="@drawable/btn_login_style"
         android:onClick="signUp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="64dp"
         android:text="Зарегистрироваться" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="47dp"
+        android:text="Нажимая «Зарегистрироваться», вы принимаете следующие условия использования."
+        android:fontFamily="Roboto"
+        android:textColor="#000000"
+        android:textSize="9dp"/>
+
+
 </LinearLayout>
