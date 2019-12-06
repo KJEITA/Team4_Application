@@ -2,28 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#63a67e"
+    android:scrollbarDefaultDelayBeforeFade="400"
+    android:scrollbarSize="4dp">
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/text_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
+        android:letterSpacing="0.13"
         android:text="Личный кабинет"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_nastr"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="45dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +44,9 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text="My Name" />
+            android:text="My Name"
+            android:textColor="#FFF"
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/email_text_view"
@@ -46,15 +54,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="My Email"
+            android:textColor="#FFF"
             android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="406dp"
+        android:layout_width="0dp"
         android:layout_height="194dp"
         android:layout_marginTop="47dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,31 +73,52 @@
 
         <Button
             android:id="@+id/static_button"
-            android:layout_width="wrap_content"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Моя статистика" />
+            android:elevation="2dp"
+            android:shadowColor="#40000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="Моя статистика"
+            android:textColor="#15675D" />
 
         <Button
             android:id="@+id/activ_button"
-            android:layout_width="wrap_content"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Активность" />
+            android:shadowColor="#40000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="Активность"
+            android:textColor="#15675D" />
 
         <Button
             android:id="@+id/done_course_button"
-            android:layout_width="wrap_content"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Пройденные курсы" />
+            android:shadowColor="#40000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="Пройденные курсы"
+            android:textColor="#15675D" />
 
         <Button
-            android:id="@+id/aciev_button"
-            android:layout_width="wrap_content"
+            android:id="@+id/about_app_button"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Достижения" />
+            android:shadowColor="#40000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="О приложении"
+            android:textColor="#15675D" />
     </LinearLayout>
 
     <LinearLayout
@@ -96,7 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="226dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="80dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,8 +135,25 @@
 
         <ImageView
             android:id="@+id/avatar_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical" />
+            android:layout_width="178dp"
+            android:layout_height="178dp"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="false"
+            android:background="@drawable/border"
+            android:baselineAlignBottom="false"
+            app:srcCompat="@drawable/avatar"
+            tools:srcCompat="@drawable/avatar" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageButton_nastr"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="28dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/settings_icon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
