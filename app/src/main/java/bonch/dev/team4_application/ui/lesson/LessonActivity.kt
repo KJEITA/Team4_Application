@@ -1,35 +1,37 @@
-package bonch.dev.team4_application
+package bonch.dev.team4_application.ui.lesson
 
-import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import bonch.dev.team4_application.ui.lesson.LessonActivity
-import bonch.dev.team4_application.ui.signUp.SignUp
+import bonch.dev.team4_application.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_lesson.*
 
-class MainActivity : AppCompatActivity() {
+class LessonActivity : AppCompatActivity() {
+
+    val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_lesson)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        fragmentManager.beginTransaction().add(R.id.fragmentLesson, ListLessonFragment())
+            .commit()
 
-        val intent = Intent(MainActivity@ this, LessonActivity::class.java)
-        startActivity(intent)
+        /*setSupportActionBar(toolbar)
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }*/
     }
 }

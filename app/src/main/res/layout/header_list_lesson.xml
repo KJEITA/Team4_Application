@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:background="@drawable/field_style"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:id="@+id/headerLesson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="headerLesson"
+        android:textColor="#FD5F46"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/headerProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="19dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/headerOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="19dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/headerProgress" />
+
+    <TextView
+        android:id="@+id/headerAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="19dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/headerOpen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пройдено"
+        android:textColor="#828282"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/headerProgress"
+        app:layout_constraintEnd_toEndOf="@+id/headerProgress"
+        app:layout_constraintStart_toStartOf="@+id/headerProgress" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Открыто"
+        android:textColor="#828282"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/headerOpen"
+        app:layout_constraintEnd_toEndOf="@+id/headerOpen"
+        app:layout_constraintStart_toStartOf="@+id/headerOpen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Всего уроков"
+        android:textColor="#828282"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/headerAll"
+        app:layout_constraintEnd_toEndOf="@+id/headerAll"
+        app:layout_constraintStart_toStartOf="@+id/headerAll" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

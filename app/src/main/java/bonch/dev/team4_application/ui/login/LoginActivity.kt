@@ -55,6 +55,16 @@ class LoginActivity : AppCompatActivity() {
                 "Отсутсвует подключение к интернету",
                 Toast.LENGTH_SHORT
             ).show()
+
+        emailText.apply {
+            addTextChangedListener { checkFields() }
+        }
+        passwordText.apply {
+            addTextChangedListener { checkFields() }
+        }
+
+        checkFields()
+        signIn(underText)
     }
 
     fun signIn(view: View) {
@@ -83,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
 
                 }
             }
-        }else
+        } else
             Toast.makeText(
                 applicationContext,
                 "Отсутсвует подключение к интернету",
@@ -97,29 +107,25 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkFields() {
-        emailText.apply {
-            addTextChangedListener {
-                if (emailText.text.toString().contains('@')) {
-                    emailText.error = null
-                    bEmail = true
-                } else {
-                    emailText.error = "Not valid Email"
-                    bEmail = false
-                }
-            }
+
+        if (emailText.text.toString().contains('@')) {
+            emailText.error = null
+            bEmail = true
+        } else {
+            emailText.error = "Not valid Email"
+            bEmail = false
         }
-        passwordText.apply {
-            addTextChangedListener {
-                if (passwordText.text.toString().length > 5) {
-                    passwordText.error = null
-                    bPassword = true
-                } else {
-                    passwordText.error = "Пароль должен быть больше 5 символов"
-                    bPassword = false
-                }
-            }
+
+
+        if (passwordText.text.toString().length > 5) {
+            passwordText.error = null
+            bPassword = true
+        } else {
+            passwordText.error = "Пароль должен быть больше 5 символов"
+            bPassword = false
         }
     }
+
 
     private fun isOnline(context: Context): Boolean {
         val connectivityManager =
