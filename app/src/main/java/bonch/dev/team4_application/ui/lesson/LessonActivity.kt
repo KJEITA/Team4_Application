@@ -2,6 +2,7 @@ package bonch.dev.team4_application.ui.lesson
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class LessonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lesson)
+        Log.e("NEW ACTIVITY","LESSONS CREATED")
 
         assert(
             supportActionBar != null //null check
