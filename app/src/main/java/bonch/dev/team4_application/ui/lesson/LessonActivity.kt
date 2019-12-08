@@ -25,13 +25,7 @@ class LessonActivity : AppCompatActivity() {
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        fragmentManager.beginTransaction().add(R.id.fragmentLesson, ListLessonFragment())
-            .commit()
-
-        /*setSupportActionBar(toolbar)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
+        //fragmentManager.beginTransaction().add(R.id.fragmentLesson, ListLessonFragment())
+          //  .commit()
     }
 }

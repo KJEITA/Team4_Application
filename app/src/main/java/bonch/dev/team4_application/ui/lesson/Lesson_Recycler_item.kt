@@ -21,21 +21,22 @@ class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHol
     ): LessonHolder {
         var view: View
 
+
+
         messageLab.setRecc(this)
         //messageList = mutableListOf()
 
         view = if (viewType == 0)
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.header_list_lesson, parent, false)
-        else
+        else if(viewType == 1)
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.active_list_lesson, parent, false)
+        else
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.noactive_list_lesson, parent, false)
 
         return LessonHolder(view)
-    }
-
-    public fun refreshData(mess: LessonObj) {
-        messageList.add(mess)
     }
 
     public fun updateData() {
@@ -43,10 +44,6 @@ class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHol
     }
 
     override fun getItemViewType(position: Int): Int {
-        /*if (messageList[position].isUser)
-            return 0
-        else
-            return 1*/
         return messageList[position].lessonType
     }
 
