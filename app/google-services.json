@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "924702489837-k0786m8ks64qo2e6v89pa3j43jor50hn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bonch.dev.team4_application",
+            "certificate_hash": "f80723814b85fa0e10b605f433188f5ab5d9a7da"
+          }
+        },
+        {
+          "client_id": "924702489837-rvhip6qc0c7lvo5o1d9rrqutgtkahj56.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bonch.dev.team4_application",
+            "certificate_hash": "925d1a089c1e4b0f0d94db95cd6fb5713ba950cd"
+          }
+        },
+        {
           "client_id": "924702489837-3ojvqv99b8scfbig51ch8tkqc9b7c740.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

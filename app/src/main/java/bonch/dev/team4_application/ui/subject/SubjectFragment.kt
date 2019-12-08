@@ -1,6 +1,7 @@
 package bonch.dev.team4_application.ui.subject
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,18 @@ import bonch.dev.team4_application.R
 import bonch.dev.team4_application.adapters.SubjSectAdapter
 import bonch.dev.team4_application.model.SubjSect
 import bonch.dev.team4_application.model.Subject
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+
 
 class SubjectFragment : Fragment() {
 
-    private lateinit var subjSectRV : RecyclerView
-    private lateinit var subjList : MutableList<Subject>
-    private lateinit var subjList1 : MutableList<Subject>
-    private lateinit var subjSectList : MutableList<SubjSect>
+    private lateinit var subjSectRV: RecyclerView
+    private lateinit var subjSectList: MutableList<SubjSect>
+
+    private lateinit var mDatabase: FirebaseDatabase
+    private lateinit var mReference: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
 
 
     override fun onCreateView(
@@ -31,43 +37,83 @@ class SubjectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        subjSectRV = view.findViewById(R.id.subjectsSectionRV)
+        auth()
+        initDB()
+        initViews(view)
         initSubjSectList()
-        setRvData()
-
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private fun auth() {
+        val email: String = "kirill_test@gmail.com"
+        val password: String = "1234qwer"
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.e("Auth", "Success")
 
+            } else {
+                Log.e("Auth", "Dinied")
+            }
+        }
+
+    }
+
+    private fun initDB() {
+        mDatabase = FirebaseDatabase.getInstance()
+        mReference = mDatabase.reference.child("Sciences")
+
+    }
+
+    private fun initViews(view: View) {
+        subjSectRV = view.findViewById(R.id.subjectsSectionRV)
     }
 
     private fun initSubjSectList() {
-        subjList = mutableListOf()
-        subjList1 = mutableListOf()
         subjSectList = mutableListOf()
+        mReference.addValueEventListener(object : ValueEventListener {
 
-        subjList.add(Subject("PAID 1","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 2","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 3","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 4","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 5","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 6","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 7","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
-        subjList.add(Subject("PAID 8","https://55341418bc55394fbe0f-65d6d0e87ce8126fb80e16752287ad6c.ssl.cf1.rackcdn.com/d927be24-3e49-11e8-83a9-08606e697db0/large.png"))
+            override fun onDataChange(p0: DataSnapshot) {
+                for (p1 in p0.getChildren()) {
 
-        subjList1.add(Subject("EXACT 1","https://is2-ssl.mzstatic.com/image/thumb/Purple124/v4/dc/fb/ce/dcfbce3b-7c05-776b-ae89-27aaf35a0462/source/100x100bb.jpg"))
-        subjList1.add(Subject("EXACT 1 EXACT 3","https://is2-ssl.mzstatic.com/image/thumb/Purple124/v4/dc/fb/ce/dcfbce3b-7c05-776b-ae89-27aaf35a0462/source/100x100bb.jpg"))
-        subjList1.add(Subject("EXACT 3 EXACT 5","https://is2-ssl.mzstatic.com/image/thumb/Purple124/v4/dc/fb/ce/dcfbce3b-7c05-776b-ae89-27aaf35a0462/source/100x100bb.jpg"))
-        subjSectList.add(SubjSect("PAID SECT",0,subjList))
-        subjSectList.add(SubjSect("EXACT SECT SCIENCES",1,subjList1))
-        subjSectList.add(SubjSect("PAID SECT1",0,subjList))
+                    val subjList: MutableList<Subject> = mutableListOf()
+                    for (p2 in p1.child("subjList").children) {
+                        val subj: Subject? = p2.getValue(Subject::class.java)
+                        if (subj != null) {
+                            subjList.add(subj)
+                        }
+
+                    }
+                    subjSectList.add(
+                        SubjSect(
+                            p1.child("subjSectTitle").value as String,
+                            (p1.child("subjSectType").value as Long).toInt(),
+                            subjList
+                        )
+                    )
+
+                }
+
+                setRvData()
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Log.e("ERROR DATABASE", p0.toException().toString())
+
+            }
+
+        })
     }
 
     private fun setRvData() {
         subjSectRV.layoutManager = LinearLayoutManager(view!!.context)
-        subjSectRV.adapter= SubjSectAdapter(subjSectList)
+        val subjSectAdapter = SubjSectAdapter(subjSectList)
+        subjSectAdapter.onItemClick = { subjItem ->
+            Log.e("RequestTitle", subjItem.subjtTitleRequest)
+        }
+        subjSectRV.adapter = subjSectAdapter
+
     }
 }
+

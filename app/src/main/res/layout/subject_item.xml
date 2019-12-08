@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/subjConstraintLayout"
+    android:id="@+id/subjConstraintLayout1"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/subjTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/backgroundView"
+        android:layout_width="148dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:text="Название предмета"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/rect_paid"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subjTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Название предмета"
+        android:textAppearance="@style/font_title_subj"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundView"
+        app:layout_constraintStart_toStartOf="@+id/backgroundView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -41,14 +58,16 @@
         app:layout_constraintStart_toStartOf="@+id/subjImageView"
         app:layout_constraintTop_toBottomOf="@+id/subjImageView"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/btn_star" />
+        app:srcCompat="@drawable/ic_zvezda" />
 
     <TextView
         android:id="@+id/subjScoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textStyle="bold"
         android:text="100"
+        android:textAppearance="@style/font_title_subj"
         app:layout_constraintBottom_toBottomOf="@+id/subjScoreImageView"
         app:layout_constraintStart_toEndOf="@+id/subjScoreImageView"
         app:layout_constraintTop_toTopOf="@+id/subjScoreImageView" />
@@ -62,15 +81,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/subjScoreImageView"
         app:layout_constraintTop_toBottomOf="@+id/subjScoreImageView"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+        app:srcCompat="@drawable/ic_procent" />
 
     <TextView
         android:id="@+id/subjProgressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textAppearance="@style/font_title_subj"
+        android:textStyle="bold"
         android:text="100%"
         app:layout_constraintBottom_toBottomOf="@+id/subjProgressImageView"
         app:layout_constraintStart_toEndOf="@+id/subjProgressImageView"
         app:layout_constraintTop_toTopOf="@+id/subjProgressImageView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package bonch.dev.team4_application.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.team4_application.R
 import bonch.dev.team4_application.model.Constants
 import bonch.dev.team4_application.model.SubjSect
+import bonch.dev.team4_application.model.Subject
 import com.bumptech.glide.Glide
 
 
@@ -16,6 +16,7 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
     RecyclerView.Adapter<SubjSectAdapter.SubjSectHolder>() {
 
     val subjSectList = subjSectList
+    var onItemClick: ((Subject) -> Unit)? = null
 
     override fun getItemViewType(position: Int): Int {
 
@@ -68,10 +69,12 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
                 paidSubjTableLayout.addView(listRow.get(j))
 
 
+
+
                 if (viewType == Constants.PAID_SUBJ) {
                     for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
-                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                        addSubjItem(i, j, position, view, listRow, R.drawable.rect_paid)
                     }
                 }
 
@@ -81,35 +84,28 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
 
                     for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
-                        addSubjItem(i, j, position, view, listRow,"#008577")
+                        addSubjItem(i, j, position, view, listRow, R.drawable.rect_exact)
                     }
                 }
 
                 if (viewType == Constants.TECH_SUBJ) {
                     for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
-                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                        addSubjItem(i, j, position, view, listRow, R.drawable.rect_tech)
                     }
                 }
 
                 if (viewType == Constants.NATURAL_SUBJ) {
                     for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
-                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                        addSubjItem(i, j, position, view, listRow, R.drawable.rect_natural)
                     }
                 }
 
                 if (viewType == Constants.HUMAN_SUBJ) {
                     for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
 
-                        addSubjItem(i, j, position, view, listRow,"#D81B60")
-                    }
-                }
-
-                if (viewType == Constants.NOT_FOUND_SUBJ) {
-                    for (i: Int in 0..subjSectList.get(position).subjList.size - 1) {
-
-                        addSubjItem(i, j, position, view, listRow,"#D81B60")
+                        addSubjItem(i, j, position, view, listRow, R.drawable.rect_human)
                     }
                 }
 
@@ -120,9 +116,11 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
 
     }
 
-    private fun addSubjItem(i: Int, j: Int, position: Int, view: View,
-                            listRow: MutableList<TableRow>,
-                            color:String) {
+    private fun addSubjItem(
+        i: Int, j: Int, position: Int, view: View,
+        listRow: MutableList<TableRow>,
+        colorView: Int
+    ) {
 
         if ((i == j * 2) || (i == j * 2 + 1)) {
 
@@ -130,6 +128,14 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
 
             val subjItemLayout: View =
                 inflater.inflate(R.layout.subject_item, view as ViewGroup, false)
+            val backgrounView: View = subjItemLayout.findViewById(R.id.backgroundView)
+
+            subjItemLayout.setOnClickListener {
+                onItemClick?.invoke(subjSectList[position].subjList[i])
+            }
+
+            backgrounView.setBackgroundResource(colorView)
+            backgrounView.background.alpha = 95
 
             val subjTitleTextView: TextView =
                 subjItemLayout.findViewById(R.id.subjTitleTextView)
@@ -140,12 +146,11 @@ class SubjSectAdapter(subjSectList: MutableList<SubjSect>) :
                 TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT, 1f
             )
-            subjItemLayout.setBackgroundColor(Color.parseColor(color))
 
             Glide.with(view.context)
-                .load(subjSectList.get(position).subjList[i].imageURL)
+                .load(subjSectList.get(position).subjList[i].subjImageURL)
                 .into(subjImageView)
-            subjTitleTextView.setText(subjSectList.get(position).subjList.get(i).nameTitle)
+            subjTitleTextView.setText(subjSectList.get(position).subjList.get(i).subjTitle)
 
             listRow[j].addView(subjItemLayout)
         }

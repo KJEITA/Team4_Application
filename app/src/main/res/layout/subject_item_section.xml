@@ -13,7 +13,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Название раздела"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:textAppearance="@style/font_title_subj_sect"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

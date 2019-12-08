@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +6,70 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="font_title_subj_sect">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:letterSpacing" tools:targetApi="lollipop">
+            0.06
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="android:shadowColor">
+            #40000000
+        </item>
+
+        <item name="android:shadowDx">
+            0
+        </item>
+
+        <item name="android:shadowDy">
+            2
+        </item>
+
+        <item name="android:shadowRadius">
+            2
+        </item>
+
+    </style>
+
+    <style name="font_title_subj">
+
+        <item name="android:textSize">
+            17sp
+        </item>
+
+        <item name="android:letterSpacing" tools:targetApi="lollipop">
+            0.06
+        </item>
+
+        <item name="android:textColor">
+            #FD5F46
+        </item>
+
+        <item name="android:shadowColor">
+            #66000000
+        </item>
+
+        <item name="android:shadowDx">
+            0
+        </item>
+
+        <item name="android:shadowDy">
+            1
+        </item>
+
+        <item name="android:shadowRadius">
+            2
+        </item>
+
     </style>
 
 </resources>
