@@ -1,13 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_1">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="110dp"
-        android:text="ЛЯ КАКОЙ Я КРУТОЙ" />
+        android:text="@string/title_theme"
+        android:textSize="28sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textViewPart2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/large_text"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageViewPart2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/field_style" />
+
+            <TextView
+                android:id="@+id/textViewPart3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/large_text"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageViewPart4"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/field_style" />
+
+            <TextView
+                android:id="@+id/textViewPart5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/large_text"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageViewPart5"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/field_style" />
+
+            <TextView
+                android:id="@+id/textViewPart6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/large_text"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageViewPart6"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/field_style" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

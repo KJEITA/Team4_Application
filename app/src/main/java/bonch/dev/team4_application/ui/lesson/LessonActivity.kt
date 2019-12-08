@@ -11,10 +11,16 @@ import bonch.dev.team4_application.R
 import bonch.dev.team4_application.ui.theory.TheoryActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 class LessonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lesson)
+
+        assert(
+            supportActionBar != null //null check
+        )
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
