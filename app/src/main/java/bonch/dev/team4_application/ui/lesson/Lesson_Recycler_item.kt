@@ -5,12 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import bonch.dev.team4_application.R
 
 class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHolder>() {
 
-    public val messageLab = LessonObj.LessonLab()
-
+    val messageLab = LessonObj.LessonLab()
 
     var messageList = messageLab.messageList
 
@@ -21,25 +19,22 @@ class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHol
     ): LessonHolder {
         var view: View
 
-
-
         messageLab.setRecc(this)
-        //messageList = mutableListOf()
 
         view = if (viewType == 0)
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.header_list_lesson, parent, false)
-        else if(viewType == 1)
+                .inflate(bonch.dev.team4_application.R.layout.header_list_lesson, parent, false)
+        else if (viewType == 1)
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.active_list_lesson, parent, false)
+                .inflate(bonch.dev.team4_application.R.layout.active_list_lesson, parent, false)
         else
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.noactive_list_lesson, parent, false)
+                .inflate(bonch.dev.team4_application.R.layout.noactive_list_lesson, parent, false)
 
         return LessonHolder(view)
     }
 
-    public fun updateData() {
+    fun updateData() {
         messageList = messageLab.messageList
     }
 
@@ -55,26 +50,32 @@ class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHol
         holder.bind(position)
     }
 
-    inner class LessonHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class LessonHolder(view: View) : RecyclerView.ViewHolder(view){
         fun bind(position: Int) {
-
             if (messageList[position].lessonType == 0) {
-                val nameTextView = itemView.findViewById<TextView>(R.id.headerLesson)
-                val allTextView = itemView.findViewById<TextView>(R.id.headerAll)
-                val openTextView = itemView.findViewById<TextView>(R.id.headerOpen)
-                val progressTextView = itemView.findViewById<TextView>(R.id.headerProgress)
+                val nameTextView =
+                    itemView.findViewById<TextView>(bonch.dev.team4_application.R.id.headerLesson)
+                val allTextView =
+                    itemView.findViewById<TextView>(bonch.dev.team4_application.R.id.headerAll)
+                val openTextView =
+                    itemView.findViewById<TextView>(bonch.dev.team4_application.R.id.headerOpen)
+                val progressTextView =
+                    itemView.findViewById<TextView>(bonch.dev.team4_application.R.id.headerProgress)
 
                 nameTextView.text = messageList[position].lessonName
                 allTextView.text = messageList[position].lessonAll
                 openTextView.text = messageList[position].lessonOpen
                 progressTextView.text = messageList[position].lessonProgress
-            }else{
-                val nameTextView = itemView.findViewById<TextView>(R.id.nameLesson)
-                val numberTextView = itemView.findViewById<TextView>(R.id.numberLesson)
+            } else {
+                val nameTextView =
+                    itemView.findViewById<TextView>(bonch.dev.team4_application.R.id.nameLesson)
+                val numberTextView =
+                    itemView.findViewById<TextView>(bonch.dev.team4_application.R.id.numberLesson)
 
                 nameTextView.text = messageList[position].lessonName
                 numberTextView.text = messageList[position].lessonId.toString()
             }
+
         }
     }
 }

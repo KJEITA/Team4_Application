@@ -11,7 +11,7 @@ data class LessonObj(
     val lessonProgress: String,
     val lessonType: Int
 ) {
-    class LessonLab() {
+    class LessonLab {
         val messageList: MutableList<LessonObj>
         val progressList: MutableList<Int>
 
@@ -61,7 +61,14 @@ data class LessonObj(
 
                             messageList.clear()
 
-                            var lesson = LessonObj(0, "Алгебра", count.toString(), progress.toString(), ((progress.toDouble()/count.toDouble())*100).toInt().toString() + "%", 0)
+                            var lesson = LessonObj(
+                                0,
+                                "Алгебра",
+                                count.toString(),
+                                progress.toString(),
+                                ((progress.toDouble() / count.toDouble()) * 100).toInt().toString() + "%",
+                                0
+                            )
                             messageList.add(lesson)
 
                             for (i in 1..count) {

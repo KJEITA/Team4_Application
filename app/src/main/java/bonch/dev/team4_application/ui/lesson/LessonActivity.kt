@@ -1,31 +1,30 @@
 package bonch.dev.team4_application.ui.lesson
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import bonch.dev.team4_application.R
+import bonch.dev.team4_application.ui.theory.TheoryActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_lesson.*
 
 class LessonActivity : AppCompatActivity() {
-
-    val fragmentManager = supportFragmentManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lesson)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
-        //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
 
-        //fragmentManager.beginTransaction().add(R.id.fragmentLesson, ListLessonFragment())
-          //  .commit()
+    fun CkickLesson(view: View) {
+        val intent = Intent(LessonActivity@ this, TheoryActivity::class.java)
+        val nameScience = view.findViewById<TextView>(R.id.nameLesson)
+        intent.putExtra("Science", nameScience.text.toString())
+        startActivity(intent)
     }
 }
