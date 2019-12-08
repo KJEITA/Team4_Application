@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import bonch.dev.team4_application.MainActivity
+import bonch.dev.team4_application.ui.activity.SubjActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -78,7 +78,7 @@ class SignUp : AppCompatActivity() {
                             currentUserDb.child("phone").setValue(phoneNumber.text.toString())
 
 
-                            val intent = Intent(SignUpActivity@ this, MainActivity::class.java)
+                            val intent = Intent(SignUpActivity@ this, SubjActivity::class.java)
                             startActivity(intent)
                         } else {
 

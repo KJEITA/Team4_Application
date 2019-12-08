@@ -9,7 +9,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import bonch.dev.team4_application.MainActivity
 import bonch.dev.team4_application.R
 import bonch.dev.team4_application.ui.signUp.SignUp
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +17,7 @@ import java.net.HttpRetryException
 import android.graphics.Paint
 import android.net.ConnectivityManager
 import android.widget.Button
+import bonch.dev.team4_application.ui.activity.SubjActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                     mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                val intent = Intent(SignInActivity@ this, MainActivity::class.java)
+                                val intent = Intent(SignInActivity@ this, SubjActivity::class.java)
                                 startActivity(intent)
                             } else {
                                 Toast.makeText(

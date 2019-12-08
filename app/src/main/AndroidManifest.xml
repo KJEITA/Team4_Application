@@ -11,13 +11,18 @@
         android:theme="@style/Theme.Design.NoActionBar">
         <activity android:name=".ui.theory.TheoryActivity"></activity>
         <activity
+            android:name=".ui.activity.SubjActivity"
+            android:label="@string/title_activity_subj">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.lesson.LessonActivity"
             android:label="@string/title_activity_lesson"
             android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.signUp.SignUp"
             android:label="@string/app_name"
