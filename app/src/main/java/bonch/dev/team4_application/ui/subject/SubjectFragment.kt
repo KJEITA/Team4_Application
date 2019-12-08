@@ -73,21 +73,21 @@ class SubjectFragment : Fragment() {
         subjSectList = mutableListOf()
         mReference.addValueEventListener(object : ValueEventListener {
 
-            override fun onDataChange(p0: DataSnapshot) {
-                for (p1 in p0.getChildren()) {
+            override fun onDataChange(subjSectListData: DataSnapshot) {
+                for (subjSectData in subjSectListData.getChildren()) {
 
                     val subjList: MutableList<Subject> = mutableListOf()
-                    for (p2 in p1.child("subjList").children) {
-                        val subj: Subject? = p2.getValue(Subject::class.java)
+                    for (subjData in subjSectData.child("subjList").children) {
+                        val subj: Subject? = subjData.getValue(Subject::class.java)
                         if (subj != null) {
                             subjList.add(subj)
                         }
 
                     }
-                    subjSectList.add(
+                    this@SubjectFragment.subjSectList.add(
                         SubjSect(
-                            p1.child("subjSectTitle").value as String,
-                            (p1.child("subjSectType").value as Long).toInt(),
+                            subjSectData.child("subjSectTitle").value as String,
+                            (subjSectData.child("subjSectType").value as Long).toInt(),
                             subjList
                         )
                     )
