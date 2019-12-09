@@ -1,5 +1,6 @@
 package bonch.dev.team4_application.ui.subject
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,8 +13,10 @@ import bonch.dev.team4_application.R
 import bonch.dev.team4_application.adapters.SubjSectAdapter
 import bonch.dev.team4_application.model.SubjSect
 import bonch.dev.team4_application.model.Subject
+import bonch.dev.team4_application.ui.lesson.LessonActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class SubjectFragment : Fragment() {
@@ -37,7 +40,7 @@ class SubjectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth()
+        //auth()
         initDB()
         initViews(view)
         initSubjSectList()
@@ -111,6 +114,10 @@ class SubjectFragment : Fragment() {
         val subjSectAdapter = SubjSectAdapter(subjSectList)
         subjSectAdapter.onItemClick = { subjItem ->
             Log.e("RequestTitle", subjItem.subjtTitleRequest)
+            val intent = Intent(context, LessonActivity::class.java)
+            intent.putExtra("NameScience", subjItem.subjTitle)
+
+            startActivity(intent)
         }
         subjSectRV.adapter = subjSectAdapter
 

@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHolder>() {
-
-    val messageLab = LessonObj.LessonLab()
+class Lesson_Recycler_item(s:String) : RecyclerView.Adapter<Lesson_Recycler_item.LessonHolder>() {
+    val messageLab = LessonObj.LessonLab(s)
 
     var messageList = messageLab.messageList
+    init {
+    messageLab.setRecc(this)
+
+}
+
 
 
     override fun onCreateViewHolder(
@@ -19,7 +23,6 @@ class Lesson_Recycler_item : RecyclerView.Adapter<Lesson_Recycler_item.LessonHol
     ): LessonHolder {
         var view: View
 
-        messageLab.setRecc(this)
 
         view = if (viewType == 0)
             LayoutInflater.from(parent.context)

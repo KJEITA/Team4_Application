@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_1"
-    android:orientation="vertical">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.lesson.LessonActivity"
+    tools:showIn="@layout/activity_lesson">
 
-    <TextView
-        android:id="@+id/nameLessonTheory"
-        android:gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ЛЯ КАКОЙ Я КРУТОЙ"
-        android:textSize="30dp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ЛЯ КАКОЙ Я КРУТОЙ"
-        android:textSize="110dp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/theory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Пройти тест"
+            android:background="@drawable/btn_login_style" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

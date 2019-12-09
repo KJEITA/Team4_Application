@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(container!!.context)
         linearLayoutManager.stackFromEnd = true
         LessonRecyclerView.layoutManager = linearLayoutManager
-        lessonRecyclerItems = Lesson_Recycler_item()
+        //lessonRecyclerItems = Lesson_Recycler_item()
         LessonRecyclerView.adapter = lessonRecyclerItems
 
         return view

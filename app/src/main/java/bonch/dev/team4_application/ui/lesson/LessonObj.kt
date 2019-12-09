@@ -11,9 +11,11 @@ data class LessonObj(
     val lessonProgress: String,
     val lessonType: Int
 ) {
-    class LessonLab {
+    class LessonLab(s:String) {
         val messageList: MutableList<LessonObj>
         val progressList: MutableList<Int>
+
+        lateinit var nameScience:String
 
 
         private var mDataBase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -24,15 +26,15 @@ data class LessonObj(
         var rec: Lesson_Recycler_item? = null
 
         init {
-            mReference = mDataBase.reference.child("Exact sciences").child("Algebra")
+            mReference = mDataBase.reference.child("Exact sciences").child(s)
             mReference2 =
                 mDataBase.reference.child("Users").child(mAuth.currentUser!!.uid).child("Progress")
-                    .child("Algebra")
+                    .child(s)
 
             messageList = mutableListOf()
             progressList = mutableListOf()
 
-            var lesson = LessonObj(0, "Алгебра", "42", "3", "1%", 0)
+            var lesson = LessonObj(0, s, "42", "3", "1%", 0)
             messageList.add(lesson)
 
             mReference2.addValueEventListener(
@@ -63,7 +65,7 @@ data class LessonObj(
 
                             var lesson = LessonObj(
                                 0,
-                                "Алгебра",
+                                s,
                                 count.toString(),
                                 progress.toString(),
                                 ((progress.toDouble() / count.toDouble()) * 100).toInt().toString() + "%",
@@ -91,6 +93,10 @@ data class LessonObj(
 
         fun setRecc(r: Lesson_Recycler_item) {
             rec = r
+        }
+
+        fun setNameSciencee(s:String){
+            nameScience = s
         }
     }
 }
