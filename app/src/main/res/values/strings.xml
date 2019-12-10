@@ -33,4 +33,10 @@
     <string name="title_personal_area">Personal Area</string>
     <string name="title_awards">Awards</string>
     <string name="title_activity_subj">SubjActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test_answer_text_view"><![CDATA[Свайпните, чтобы увидеть ответ>>>]]></string>
+    <string name="text_btn_right">Ответ сошелся</string>
+    <string name="text_btn_solution">Показать решение</string>
 </resources>

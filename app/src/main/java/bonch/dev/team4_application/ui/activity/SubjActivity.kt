@@ -2,6 +2,7 @@ package bonch.dev.team4_application.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -34,13 +35,5 @@ class SubjActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        //val intent = Intent(SubjActivity@ this, LessonActivity::class.java)
-        //startActivity(intent)
-    }
-    fun onClickSubJect(view: View){
-        val intent = Intent(SubjActivity@ this, LessonActivity::class.java)
-        val t = view.findViewById<TextView>(R.id.subjTitleTextView)
-        intent.putExtra("NameScience", t.toString())
-        startActivity(intent)
     }
 }

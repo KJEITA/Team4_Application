@@ -6,31 +6,38 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import bonch.dev.team4_application.R
+import bonch.dev.team4_application.model.Constants
 import bonch.dev.team4_application.ui.test.TestActivity
 import com.google.firebase.database.*
 
 class TheoryActivity : AppCompatActivity() {
 
-    private var mDataBase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private var mReference: DatabaseReference
+    private lateinit var mDataBase: FirebaseDatabase
+    private lateinit var mReference: DatabaseReference
+    private lateinit var questURL: String
+    private lateinit var ansverURL: String
+    private lateinit var solutionURL: String
+    private lateinit var titleSubj:String
+    private lateinit var titleLesson:String
+    private lateinit var numberLesson:String
+
+    private lateinit var theoryTextView:TextView
+    private lateinit var titleLessonTextView:TextView
+    private lateinit var numberLessonTextView:TextView
+
+
 
     init {
-        mReference =
-            mDataBase.reference.child("Exact sciences").child("Алгебра").child("1")
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theory)
-
-        var nameScence = intent.getStringExtra("Science")
-
-        //val view_nameScence = findViewById<TextView>(R.id.nameLessonTheory)
-
-        //view_nameScence.text = nameScence
-        val view_theory = findViewById<TextView>(R.id.theory)
-        val view_disc = findViewById<TextView>(R.id.nameDisc)
-        val view_numTest = findViewById<TextView>(R.id.numTest)
+        setToolBarBackNavigation()
+        initDataFromIntent()
+        initViews()
 
         mReference.addValueEventListener(
             object : ValueEventListener {
@@ -38,19 +45,45 @@ class TheoryActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    var t = p0.child("Theory").value as String
-                    view_theory.text = t
-                    view_disc.text = "Алгебра"
-                    view_numTest.text = "1"
+                    var theoryText = p0.child("Theory").value as String
+                    theoryTextView.text = theoryText
+                    titleLessonTextView.text = p0.child("Name").value as String
+                    numberLessonTextView.text = numberLesson
                 }
             })
     }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
-    fun startTest(view: View) {
+    private fun setToolBarBackNavigation() {
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+    }
+
+    private fun initViews() {
+        theoryTextView = findViewById<TextView>(R.id.theory)
+        titleLessonTextView = findViewById<TextView>(R.id.nameDisc)
+        numberLessonTextView = findViewById<TextView>(R.id.numTest)
+
+    }
+
+    private fun initDataFromIntent() {
+
+        titleSubj = intent.getStringExtra(Constants.TITLE_SUBJECT_TAG)
+        titleLesson= intent.getStringExtra(Constants.TITLE_LESSON_TAG)
+        numberLesson = intent.getStringExtra(Constants.NUMBER_LESSON_TAG)
+
+        mDataBase = FirebaseDatabase.getInstance()
+        mReference =
+            mDataBase.reference.child("Exact sciences").child(titleSubj).child(numberLesson)
+    }
+
+    fun startTestActivity(view: View) {
         val intent = Intent(TheoryActivity@ this, TestActivity::class.java)
-        val nameScience = view.findViewById<TextView>(bonch.dev.team4_application.R.id.nameLesson)
-        intent.putExtra("Name", nameScience.text.toString())
-        intent.putExtra("Num", nameScience.text.toString())
+        intent.putExtra(Constants.TITLE_SUBJECT_TAG, titleSubj)
+        intent.putExtra(Constants.NUMBER_LESSON_TAG, numberLesson)
         startActivity(intent)
     }
 }

@@ -8,15 +8,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.test.TestActivity"></activity>
-        <activity android:name=".ui.theory.TheoryActivity" />
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait">
+        <activity android:name=".ui.test.TestActivity"
+            android:label="Тест"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.theory.TheoryActivity"
+            android:label="Теория"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.SubjActivity"
-            android:label="@string/title_activity_subj"></activity>
+            android:label="@string/title_activity_subj"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.lesson.LessonActivity"
-            android:label="@string/title_activity_lesson" />
+            android:label="Уроки"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.signUp.SignUp"
             android:label="@string/app_name"
