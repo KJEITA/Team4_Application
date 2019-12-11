@@ -1,4 +1,4 @@
-package bonch.dev.team4_application.ui.home
+package bonch.dev.team4_application.ui.personal_area
 
 import android.view.LayoutInflater
 import android.view.View

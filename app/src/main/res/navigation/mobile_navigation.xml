@@ -11,16 +11,11 @@
         android:label="@string/title_education" />
 
     <fragment
-        android:id="@+id/navigation_personal_area"
-        android:name="bonch.dev.team4_application.ui.personal_area.PersonalAreaFragment"
-        android:label="@string/title_personal_area" />
-
-    <fragment
         android:id="@+id/navigation_awards"
         android:name="bonch.dev.team4_application.ui.awards.AwardsFragment"
         android:label="@string/title_awards" />
     <fragment
         android:id="@+id/navigation_home"
-        android:name="bonch.dev.team4_application.ui.home.HomeFragment"
-        android:label="@string/title_awards" />
+        android:name="bonch.dev.team4_application.ui.personal_area.PersonalAreaFragment"
+        android:label="@string/title_personal_area" />
 </navigation>

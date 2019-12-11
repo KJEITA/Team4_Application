@@ -10,6 +10,7 @@ import android.widget.ImageView
 
 import bonch.dev.team4_application.R
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class AnswerFragment : Fragment() {
@@ -19,6 +20,7 @@ class AnswerFragment : Fragment() {
     private var countLesson: Int = 0
     private lateinit var mDataBase: FirebaseDatabase
     private lateinit var mReference: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
     private lateinit var answerImage: ImageView
     private lateinit var btnRight: Button
     private lateinit var btnSolution: Button
@@ -38,7 +40,7 @@ class AnswerFragment : Fragment() {
 
         initViews(view)
         setOnClickListeners()
-        initRealtimeDB()
+        initRealtimeDBAndAuth()
         loadAnswerFromDB()
 
     }
@@ -46,8 +48,8 @@ class AnswerFragment : Fragment() {
     private fun setOnClickListeners() {
         btnRight.setOnClickListener(View.OnClickListener {
 
-
-            mReference = mDataBase.reference.child("Users").child("5i7rzeCv3Sbo4QPjbfqnBo6zGDw1")
+            val user = mAuth.currentUser!!.uid
+            mReference = mDataBase.reference.child("Users").child(user)
                 .child("Progress").child(titleSubj.toString())
 
             mReference.addValueEventListener(
@@ -124,10 +126,12 @@ class AnswerFragment : Fragment() {
 
     }
 
-    private fun initRealtimeDB() {
+    private fun initRealtimeDBAndAuth() {
         mDataBase = FirebaseDatabase.getInstance()
         mReference =
             mDataBase.reference.child("Exact sciences").child(titleSubj.toString())
+
+        mAuth = FirebaseAuth.getInstance()
 
     }
 

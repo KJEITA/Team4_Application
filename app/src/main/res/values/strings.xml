@@ -29,9 +29,9 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="title_education">Educationsssss</string>
-    <string name="title_personal_area">Personal Area</string>
-    <string name="title_awards">Awards</string>
+    <string name="title_education">Обучение</string>
+    <string name="title_personal_area">Личный кабинет</string>
+    <string name="title_awards">Достижения</string>
     <string name="title_activity_subj">SubjActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

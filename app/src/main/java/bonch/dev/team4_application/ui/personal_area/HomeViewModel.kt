@@ -1,7 +1,5 @@
-package bonch.dev.team4_application.ui.home
+package bonch.dev.team4_application.ui.personal_area
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
