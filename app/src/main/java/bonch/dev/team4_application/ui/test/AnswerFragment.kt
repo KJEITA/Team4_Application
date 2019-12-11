@@ -66,9 +66,11 @@ class AnswerFragment : Fragment() {
                                 }
 
                             }
-                            if (!isTestAlreadyPassed) mReference.child((p0.childrenCount + 1).toString()).setValue(
-                                numberLesson?.toInt()
-                            )
+                            if (!isTestAlreadyPassed)
+                                mReference.child((p0.childrenCount + 1).toString()).setValue(
+                                    numberLesson?.toInt())
+
+
                         }
                     }
                 })
