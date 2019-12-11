@@ -23,11 +23,12 @@ class LessonActivity : AppCompatActivity() {
 
         setToolBarBackNavigation()
         initViews()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         setRV()
-
-
-
-
     }
 
     private fun setRV() {

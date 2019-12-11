@@ -1,7 +1,6 @@
 package bonch.dev.team4_application.ui.test
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +10,22 @@ import android.widget.ImageView
 
 import bonch.dev.team4_application.R
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class AnswerFragment : Fragment() {
 
     private var numberLesson: String? = null
     private var titleSubj: String? = null
+    private var countLesson: Int = 0
     private lateinit var mDataBase: FirebaseDatabase
     private lateinit var mReference: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
     private lateinit var answerImage: ImageView
     private lateinit var btnRight: Button
     private lateinit var btnSolution: Button
-    private lateinit var answerUrl:String
-    private lateinit var solutionUrl:String
+    private lateinit var answerUrl: String
+    private lateinit var solutionUrl: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +40,17 @@ class AnswerFragment : Fragment() {
 
         initViews(view)
         setOnClickListeners()
-        initRealtimeDB()
-        loadQuestiomFromDB()
+        initRealtimeDBAndAuth()
+        loadAnswerFromDB()
 
     }
 
     private fun setOnClickListeners() {
         btnRight.setOnClickListener(View.OnClickListener {
 
-            var count:Int=0
-
-                    mReference = mDataBase.reference.child("Users").child("5i7rzeCv3Sbo4QPjbfqnBo6zGDw1").
-                        child("Progress").child(titleSubj.toString())
+            val user = mAuth.currentUser!!.uid
+            mReference = mDataBase.reference.child("Users").child(user)
+                .child("Progress").child(titleSubj.toString())
 
             mReference.addValueEventListener(
                 object : ValueEventListener {
@@ -57,22 +58,29 @@ class AnswerFragment : Fragment() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        for(p1 in p0.getChildren()){
 
-                            count++
-                            Log.e("DA",count.toString())}
-                        mReference.child((count+1).toString()).setValue(numberLesson?.toInt())
+                        var isTestAlreadyPassed: Boolean = false
+
+                        if (p0.childrenCount + 1 < countLesson) {
+                            for (p1 in p0.children) {
+                                if (p1.value.toString().toInt() == numberLesson?.toInt()) {
+                                    isTestAlreadyPassed = true
+                                }
+
+                            }
+                            if (!isTestAlreadyPassed)
+                                mReference.child((p0.childrenCount + 1).toString()).setValue(
+                                    numberLesson?.toInt())
+
+
+                        }
                     }
                 })
 
 
-
-
-
-
         })
         btnSolution.setOnClickListener(View.OnClickListener {
-            btnSolution.isClickable=false
+            btnSolution.isClickable = false
             Glide
                 .with(this@AnswerFragment)
                 .load(solutionUrl)
@@ -90,13 +98,13 @@ class AnswerFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        answerImage=view.findViewById(R.id.testQuestionImageView)
-        btnRight=view.findViewById(R.id.btn_right)
-        btnSolution=view.findViewById(R.id.btn_solution)
+        answerImage = view.findViewById(R.id.testQuestionImageView)
+        btnRight = view.findViewById(R.id.btn_right)
+        btnSolution = view.findViewById(R.id.btn_solution)
     }
 
 
-    private fun loadQuestiomFromDB() {
+    private fun loadAnswerFromDB() {
 
         mReference.addValueEventListener(
             object : ValueEventListener {
@@ -104,8 +112,10 @@ class AnswerFragment : Fragment() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    answerUrl = p0.child("answerUrl").value as String
-                    solutionUrl = p0.child("solutionUrl").value as String
+                    countLesson = p0.childrenCount.toInt()
+                    answerUrl = p0.child(numberLesson.toString()).child("answerUrl").value as String
+                    solutionUrl =
+                        p0.child(numberLesson.toString()).child("solutionUrl").value as String
                     Glide
                         .with(this@AnswerFragment)
                         .load(answerUrl)
@@ -116,11 +126,15 @@ class AnswerFragment : Fragment() {
 
     }
 
-    private fun initRealtimeDB() {
+    private fun initRealtimeDBAndAuth() {
         mDataBase = FirebaseDatabase.getInstance()
         mReference =
-            mDataBase.reference.child("Exact sciences").child(titleSubj.toString()).child(numberLesson.toString())
+            mDataBase.reference.child("Exact sciences").child(titleSubj.toString())
+
+        mAuth = FirebaseAuth.getInstance()
+
     }
+
     companion object {
 
         @JvmStatic
