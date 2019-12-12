@@ -23,7 +23,6 @@
         android:layout_marginTop="128dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="128dp"
-        android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"

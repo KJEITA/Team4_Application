@@ -44,7 +44,7 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
-        android:layout_height="194dp"
+        android:layout_height="250dp"
         android:layout_marginTop="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,8 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             android:text="Моя статистика"
-            android:textColor="#15675D" />
+            android:textColor="#15675D"
+            android:background="@drawable/field_style"/>
 
         <Button
             android:id="@+id/activ_button"
@@ -75,7 +76,10 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             android:text="Активность"
-            android:textColor="#15675D" />
+            android:textColor="#15675D"
+            android:background="@drawable/field_style"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/done_course_button"
@@ -87,7 +91,9 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             android:text="Пройденные курсы"
-            android:textColor="#15675D" />
+            android:textColor="#15675D"
+            android:background="@drawable/field_style"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/about_app_button"
@@ -99,7 +105,8 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             android:text="О приложении"
-            android:textColor="#15675D" />
+            android:textColor="#15675D"
+            android:background="@drawable/field_style"/>
     </LinearLayout>
 
     <LinearLayout
@@ -122,8 +129,8 @@
             android:adjustViewBounds="false"
             android:background="@drawable/border"
             android:baselineAlignBottom="false"
-            app:srcCompat="@drawable/avatar"
-            tools:srcCompat="@drawable/avatar" />
+            app:srcCompat="@drawable/avatar_cat"
+            tools:srcCompat="@drawable/avatar_cat" />
     </LinearLayout>
 
     <ImageView
